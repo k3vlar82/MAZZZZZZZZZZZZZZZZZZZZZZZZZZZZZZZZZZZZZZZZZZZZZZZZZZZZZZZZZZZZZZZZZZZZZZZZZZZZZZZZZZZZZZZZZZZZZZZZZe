@@ -71,10 +71,30 @@ window.onload = function(){
             
             for(var y = 0; y < SIZE; y++){
                for(var x = 0; x < SIZE; x++){
-
+                var left = x--;
+                if(x < 0){
+                    newCell.style.border = ".5px solid red";
+                    x++;
+                }
+                var right = x++;
+                if(x > SIZE){
+                    newCell.style.border = ".5px solid red";
+                    x--;
+                }
+                var up = y--;
+                if(y < 0){
+                    newCell.style.border = ".5px solid red";
+                    y++;
+                }
+                var down = y++;
+                if(y < SIZE){
+                    newCell.style.border = ".5px solid red";
+                    y--;
+                }
+                
                }
             }
-
+            neighbors();
         }
 
         }
