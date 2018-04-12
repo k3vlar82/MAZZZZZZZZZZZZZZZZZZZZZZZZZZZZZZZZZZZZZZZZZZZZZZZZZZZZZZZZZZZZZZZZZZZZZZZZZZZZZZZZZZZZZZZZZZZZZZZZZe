@@ -41,7 +41,7 @@ window.onload = function(){
             // }
 
             redrawGrid();
-            
+
          function redrawGrid(){
          var gridDiv = document.getElementById("grid");
     
@@ -66,5 +66,19 @@ window.onload = function(){
     
              gridDiv.appendChild(newRow);
          }
+
+         function neighbors(){
+            
+            for(var y = 0; y < SIZE; y++){
+               for(var x = 0; x < SIZE; x++){
+
+               }
+            }
+
         }
+
+        }
+
+        
+
     }
