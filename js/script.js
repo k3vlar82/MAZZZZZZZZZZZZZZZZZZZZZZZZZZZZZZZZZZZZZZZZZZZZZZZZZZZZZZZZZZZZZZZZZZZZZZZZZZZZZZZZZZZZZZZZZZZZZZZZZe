@@ -14,11 +14,17 @@ window.onload = function(){
     //path booleans
     //neighbor locations
     //set neighbor locations with a function and if statements
-    //LOTS OF DRAWING    
+    //LOTS OF DRAWING
+    // DRAW ALL THE CODE    
         const SIZE = 4;
          const CELL_SIZE = 69;
     
          var myGrid = [];
+
+        var selectedX = 0;
+        var selectedY = 0;
+
+         
     
          for(var y = 0; y < SIZE; y++){
             myGrid[y] = [];
@@ -29,7 +35,14 @@ window.onload = function(){
          }
     
          console.log(myGrid);
-    
+
+            // if(selectedX == x && selectedY == y){
+            //     newCell.style.border = ".5px solid red";
+            // }
+
+            redrawGrid();
+            
+         function redrawGrid(){
          var gridDiv = document.getElementById("grid");
     
          for(var y = 0; y < SIZE; y++){
@@ -53,4 +66,5 @@ window.onload = function(){
     
              gridDiv.appendChild(newRow);
          }
+        }
     }
