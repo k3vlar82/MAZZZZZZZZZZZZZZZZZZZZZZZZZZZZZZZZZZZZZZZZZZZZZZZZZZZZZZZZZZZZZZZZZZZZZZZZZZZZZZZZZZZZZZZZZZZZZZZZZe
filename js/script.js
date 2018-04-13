@@ -52,19 +52,18 @@ window.onload = function(){
                 var newRow = document.createElement("div");
     
                 for(var x = 0; x < SIZE; x++){
-                      var newCell = document.createElement("div");
+                        var newCell = document.createElement("div");
     
-                      newCell.style.height = CELL_SIZE + "px";
-                      newCell.style.width = CELL_SIZE + "px";
-                      newCell.style.backgroundColor = "#abcdef";
-                      newCell.style.color = "#123456";
-                      newCell.style.display = "inline-block";
-                    newCell.style.border = "solid .5px black";
-                    ewCell.style.textAlign = "center";
-    
-                newCell.textContent = y + "," + x;
-    
-                newRow.appendChild(newCell);
+                        newCell.style.height = CELL_SIZE + "px";
+                        newCell.style.width = CELL_SIZE + "px";
+                        newCell.style.backgroundColor = "#abcdef";
+                        newCell.style.color = "#123456";
+                        newCell.style.display = "inline-block";
+                        newCell.style.border = "solid .5px black";
+                        newCell.style.textAlign = "center";
+                        newCell.textContent = y + "," + x;
+                        
+                        newRow.appendChild(newCell);
                 }
     
                 gridDiv.appendChild(newRow);
