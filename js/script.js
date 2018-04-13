@@ -19,7 +19,7 @@ window.onload = function(){
         const SIZE = 4;
          const CELL_SIZE = 69;
     
-         var myGrid = [];
+        var myGrid = [];
 
         var selectedX = 0;
         var selectedY = 0;
@@ -95,6 +95,22 @@ window.onload = function(){
                }
             }
             neighbors();
+
+            function draw(a, b){
+                var visit = false;
+                var x = [];
+                var y = [];
+                x.push(a);
+                while(a != null){
+                    b = y.pop();
+                    if(visit = false){
+                        visit = true;
+                    }
+                    
+                }
+    
+    
+            }
         }
 
         }
