@@ -16,6 +16,15 @@ window.onload = function () {
     var undirs = [1, 0, 3, 2]; // opposite direction
     var delta = { x: [0, 0, -1, 1], y: [-1, 1, 0, 0] }; // offsets of neighbors
 
+    function Cell(x, y) {
+        this.walls = ['l', 'r', 'u', 'd'],
+            this.x = x;
+        this.y = y;
+        this.visited = false;
+        this.neighborsX = [x - 1, x, x + 1, x];
+        this.neighborsY = [y, y + 1, y, y - 1];
+    }
+
     ((Math.floor(Math.random((SIZE - 1) / 2))) * 2) + 1;
     function redrawGrid() {
         var gridDiv = document.getElementById("grid");
