@@ -1,5 +1,5 @@
 window.onload = function () {
-    const SIZE = 4;
+    const SIZE = 3;
     const CELL_SIZE = 69;
     var node = '';
     var rows;
@@ -48,10 +48,14 @@ window.onload = function () {
         myGrid[y] = [];
     
         for(var x = 0; x < SIZE; x++){
-            myGrid[y][x] = y + "," + x;
+            myGrid[y][x] = new Cell(x,y);
         }
      }
      console.log(myGrid);
+
+     function getRandomInt(max) {
+        return Math.floor(Math.random() * Math.floor(max));
+      }
         
         if (SIZE % 2 == 0) {
             //even numbers
@@ -67,4 +71,15 @@ window.onload = function () {
         
     }
     redrawGrid();
+
+    explore(x,y,grid){
+        cell = grid[y][x];
+        cell.visited = true;
+        array.forEach(neighbor => { neighbor = grid[y][x]
+            if(!visited){
+                explore(Cell.neighborsX, Cell.neighborsY, grid);
+            }
+            
+        });
+    };
 }
