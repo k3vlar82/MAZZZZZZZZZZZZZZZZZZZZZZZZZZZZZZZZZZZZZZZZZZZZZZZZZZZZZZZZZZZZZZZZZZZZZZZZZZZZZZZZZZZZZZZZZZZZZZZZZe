@@ -85,4 +85,7 @@ window.onload = function () {
         return maze.visitedCount; // when visited count == row * columns it's done
     }
 
+   
 }
+
+
