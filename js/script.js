@@ -1,6 +1,7 @@
 window.onload = function () {
     const SIZE = 2;
     const CELL_SIZE = 69;
+    var node = '';
 
     ((Math.floor(Math.random((SIZE - 1) / 2))) * 2) + 1;
     redrawGrid();
@@ -27,5 +28,17 @@ window.onload = function () {
 
             gridDiv.appendChild(newRow);
         }
+        if(SIZE % 2 == 0){
+            //even numbers
+            if(x % 2 == 1 && y % 2 == 1){
+                [x][y] = node;
+            }
+        } else if (SIZE % 2 == 1){
+            //odd numbers
+            if(x % 2 == 1 && y % 2 == 1){
+                [x][y] = node;
+            }
+        }
+
     }
 }
