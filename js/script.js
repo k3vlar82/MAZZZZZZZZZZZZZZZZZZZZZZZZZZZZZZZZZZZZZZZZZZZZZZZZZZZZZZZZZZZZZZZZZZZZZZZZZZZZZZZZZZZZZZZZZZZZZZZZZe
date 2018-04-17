@@ -54,8 +54,8 @@ window.onload = function () {
                 console.log(go);
                 explore(go.x, go.y, myGrid);
             }
+            back.pop();
         }
-        back.pop();
 
     };
 
@@ -100,4 +100,6 @@ window.onload = function () {
 
 }
 
-
+// function work(){
+//  make me a maze, a sandwitch, and do my laundry
+// } alert("something cool");
