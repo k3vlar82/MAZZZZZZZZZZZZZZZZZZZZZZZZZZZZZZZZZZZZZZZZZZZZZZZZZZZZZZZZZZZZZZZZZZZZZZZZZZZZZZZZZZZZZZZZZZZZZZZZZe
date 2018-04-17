@@ -2,10 +2,10 @@ window.onload = function () {
 
     const SIZE = 6;
     const CELL_SIZE = 69;
-    
+
     var myGrid = [];
 
-    var back = [start];
+
 
     function Cell(x, y) {
         this.walls = ['l', 'r', 'u', 'd'];
@@ -18,11 +18,23 @@ window.onload = function () {
     var visited = false;
     redrawGrid();
 
-    var start = myGrid[getRandomInt(SIZE)][getRandomInt(SIZE)];
-    console.log(start);
+    function getRandomInt(max) {
+        return Math.floor(Math.random() * Math.floor(max));
+    }
+
+    function Start() {
+        this.x = getRandomInt(SIZE);
+        this.y = getRandomInt(SIZE);
+    }
+
+    var start = new Start();
+
+    console.log(start.x);
+
+    var back = [start];
 
     if (!visited) {
-        explore(getRandomInt(SIZE), getRandomInt(SIZE), myGrid);
+        explore(start.x, start.y, myGrid);
         visited = true;
     }
 
@@ -31,31 +43,49 @@ window.onload = function () {
         var go;
 
         //console.log(myGrid);
-        cell = myGrid[x][y];
-        while (!visited) {
-            if (!visited) {
-                var direction = Math.floor(Math.random() * 4);
-                console.log(direction);
-                console.log(myGrid[y][x]);
-                if (direction == 0 && x > 0) {
-                        go = myGrid[x - 1][y];
-                    back.push();
-                } else if (direction == 1 && x < SIZE) {
-                    go = myGrid[x + 1][y];
-                    back.push();
-                } else if (direction == 2 && y < SIZE) {
-                    go = myGrid[x][y + 1];
-                    back.push();
-                } else if (direction == 3 && y > 0) {
-                    go = myGrid[x][y - 1];
-                    back.push();
-                }
-                cell.visited = true;
-                console.log(go);
-                explore(go.x, go.y, myGrid);
-            }
-            back.pop();
+        var cell = myGrid[x][y];
+        cell.visited = true;
+
+        // If I can go left
+             // go = left
+             // If !left.visisted
+                 // explore(left.x,left.y, myGrid)
+        // If can go right
+        // fi can go up
+        // if can go down
+
+        //var direction = Math.floor(Math.random() * 4);
+        console.log(myGrid[y][x]);
+        if (direction == 0 && x > 0) {
+            cell.visited = true;
+            go = myGrid[x - 1][y];
+            back.push();
+        } else if (direction == 1 && x < SIZE) {
+            cell.visited = true;
+            go = myGrid[x + 1][y];
+            back.push();
+        } else if (direction == 2 && y < SIZE) {
+            cell.visited = true;
+            go = myGrid[x][y + 1];
+            back.push();
+        } else if (direction == 3 && y > 0) {
+            cell.visited = true;
+            go = myGrid[x][y - 1];
+            back.push();
         }
+
+        if (!visited) {
+            explore(go.x, go.y, myGrid);
+        }
+        console.log(go);
+        if (visited == true) {
+            back.pop();
+            explore(go.x, go.y, myGrid);
+        }
+
+
+
+
 
     };
 
@@ -92,10 +122,6 @@ window.onload = function () {
             }
         }
 
-    }
-
-    function getRandomInt(max) {
-        return Math.floor(Math.random() * Math.floor(max));
     }
 
 }
