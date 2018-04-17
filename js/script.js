@@ -33,55 +33,83 @@ window.onload = function () {
 
     var back = [start];
 
-    if (!visited) {
+    // if (!visited) {
         explore(start.x, start.y, myGrid);
-        visited = true;
-    }
+    //     visited = true;
+    // }
 
 
     function explore(x, y, myGrid) {
-        var go;
+        var go = new Cell();
 
         //console.log(myGrid);
         var cell = myGrid[x][y];
         cell.visited = true;
 
         // If I can go left
-             // go = left
-             // If !left.visisted
-                 // explore(left.x,left.y, myGrid)
+        // go = left
+        // If !left.visisted
+        // explore(left.x,left.y, myGrid)
         // If can go right
         // fi can go up
         // if can go down
 
         //var direction = Math.floor(Math.random() * 4);
         console.log(myGrid[y][x]);
-        if (direction == 0 && x > 0) {
+        if (x - 1 >= 0) {
             cell.visited = true;
             go = myGrid[x - 1][y];
+            if (!go.visited) {
+                go.visited = true;
+                explore(go.x, go.y, myGrid);
+            }
+            else if(go.visited){
+                explore(cell.x, cell.y, myGrid);
+            }
             back.push();
-        } else if (direction == 1 && x < SIZE) {
+        } else if (x + 1 <= SIZE) {
             cell.visited = true;
             go = myGrid[x + 1][y];
+            if (!go.visited) {
+                go.visited = true;
+                explore(go.x, go.y, myGrid);
+            }
+            else if(go.visited){
+                explore(cell.x, cell.y, myGrid);
+            }
             back.push();
-        } else if (direction == 2 && y < SIZE) {
-            cell.visited = true;
-            go = myGrid[x][y + 1];
-            back.push();
-        } else if (direction == 3 && y > 0) {
+        } else if (y - 1 >= 0) {
             cell.visited = true;
             go = myGrid[x][y - 1];
+            if (!go.visited) {
+                go.visited = true;
+                explore(go.x, go.y, myGrid);
+            }
+            else if(go.visited){
+                explore(cell.x, cell.y, myGrid);
+            }
+            back.push();
+        } else if (y + 1 <= SIZE) {
+            cell.visited = true;
+            go = myGrid[x][y + 1];
+            if (!go.visited) {
+                go.visited = true;
+                explore(go.x, go.y, myGrid);
+            }
+            else if(go.visited){
+                explore(cell.x, cell.y, myGrid);
+            }
             back.push();
         }
+        back.pop();
 
-        if (!visited) {
-            explore(go.x, go.y, myGrid);
-        }
-        console.log(go);
-        if (visited == true) {
-            back.pop();
-            explore(go.x, go.y, myGrid);
-        }
+        // if (!visited) {
+        //     explore(go.x, go.y, myGrid);
+        // }
+        // console.log(go);
+        // if (visited == true) {
+        //     explore(go.x, go.y, myGrid);
+        // }
 
 
 
@@ -107,7 +135,6 @@ window.onload = function () {
         //         newCell.style.border = "solid .5px black";
         //         newCell.style.textAlign = "center";
         //         newCell.textContent = y + "," + x;
-
         //         newRow.appendChild(newCell);
         //     }
         //     gridDiv.appendChild(newRow);
