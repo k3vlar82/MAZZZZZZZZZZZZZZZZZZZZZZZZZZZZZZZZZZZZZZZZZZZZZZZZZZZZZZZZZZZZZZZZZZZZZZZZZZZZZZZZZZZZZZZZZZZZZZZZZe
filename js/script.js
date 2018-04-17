@@ -37,85 +37,105 @@ window.onload = function () {
     // }
 
 
+
+
+
     function explore(x, y, myGrid) {
         var go = myGrid[x][y];
-
-        //console.log(myGrid);
         var cell = myGrid[x][y];
         cell.visited = true;
-
         // If I can go left
-            // go = left
-            // If !left.visisted
-                 // explore(left.x,left.y, myGrid)
+        // go = left
+        // If !left.visisted
+        // explore(left.x,left.y, myGrid)
         // If can go right
         // fi can go up
         // if can go down
 
         var direction = Math.floor(Math.random() * 4);
-        console.log(myGrid[x][y]);
+        console.log(direction);
+        //  console.log(myGrid[x][y]);
+        console.log(go);
         if (direction == 0 && x - 1 >= 0) {
-            go = myGrid[x - 1][y];
-            if (!go.visited) {
-                go.visited = true;
-                back.push(go);
-                explore(go.x, go.y, myGrid);
+            left(go.x, go.y);
+            while (!visited) {
+                if (!go.visited) {
+                    right(go.x, go.y);
+                } else if (!go.visited) {
+                    down(go.x, go.y);
+                } else if (!go.visited) {
+                    up(go.x, go.y);
+                } else {
+                    back.pop();
+                }
             }
-            else if (go.visited) {
-                explore(cell.x, cell.y, myGrid);
-               // back.pop();
-            }
+            back.push(go);
+            explore(go.x, go.y, myGrid);
         } else if (direction == 1 && x + 1 < SIZE) {
-            go = myGrid[x + 1][y];
-            if (!go.visited) {
-                go.visited = true;
-                back.push(go);
-                explore(go.x, go.y, myGrid);
+            console.log(go);
+            right(go.x, go.y);
+            while (!visited) {
+                if (!go.visited) {
+                    right(go.x, go.y);
+                } else if (!go.visited) {
+                    down(go.x, go.y);
+                } else if (!go.visited) {
+                    up(go.x, go.y);
+                } else {
+                    back.pop();
+                }
             }
-            else if (go.visited) {
-              //  back.pop();
-                explore(cell.x, cell.y, myGrid);
-            }
+            back.push(go);
+            explore(go.x, go.y, myGrid);
         } else if (direction == 2 && y + 1 < SIZE) {
-            go = myGrid[x][y + 1];
-            if (!go.visited) {
-                go.visited = true;
-                back.push(go);
-                explore(go.x, go.y, myGrid);
+            console.log(go);
+            down(go.x, go.y);
+            while (!visited) {
+                if (!go.visited) {
+                    right(go.x, go.y);
+                } else if (!go.visited) {
+                    down(go.x, go.y);
+                } else if (!go.visited) {
+                    up(go.x, go.y);
+                } else {
+                    back.pop();
+                }
             }
-            else if (go.visited) {
-             //   back.pop();
-                explore(cell.x, cell.y, myGrid);
-            }
+            back.push(go);
+            explore(go.x, go.y, myGrid);
         } else if (direction == 3 && y - 1 >= 0) { // y is 0 - goes to this, pops last cell, goes back to this
-            go = myGrid[x][y - 1];
-            if (!go.visited) {
-                go.visited = true;
-                back.push(go);
-                explore(go.x, go.y, myGrid);
+            console.log(go);
+            up(go.x, go.y);
+            while (!visited) {
+                if (!go.visited) {
+                    right(go.x, go.y);
+                } else if (!go.visited) {
+                    down(go.x, go.y);
+                } else if (!go.visited) {
+                    up(go.x, go.y);
+                } else {
+                    back.pop();
+                }
             }
-            else if (go.visited) {
-              //  back.pop();
-                explore(cell.x, cell.y, myGrid);
-            }
+            back.push(go);
+            explore(go.x, go.y, myGrid);
         }
-
-        console.log(back);
-        // if (!visited) {
-        //     explore(go.x, go.y, myGrid);
+        // else if (go.visited) {
+        //     back.pop();
+        //     explore(cell.x, cell.y, myGrid);
         // }
-        // console.log(go);
-        // if (visited == true) {
-        //     explore(go.x, go.y, myGrid);
-        // }
+    }
 
+    console.log(back);
+    // if (!visited) {
+    //     explore(go.x, go.y, myGrid);
+    // }
+    // console.log(go);
+    // if (visited == true) {
+    //     explore(go.x, go.y, myGrid);
+    // }
 
-
-
-
-    };
-
-    ((Math.floor(Math.random((SIZE - 1) / 2))) * 2) + 1;
+    //((Math.floor(Math.random((SIZE - 1) / 2))) * 2) + 1;
     function redrawGrid() {
         for (var x = 0; x < SIZE; x++) {
             myGrid[x] = [];
@@ -146,7 +166,76 @@ window.onload = function () {
         // }
     }
 
-}
+    function left(x, y) {
+        var go = myGrid[x][y];
+        go = myGrid[x - 1][y];
+        if (!go.visited) {
+            go.visited = true;
+            back.push(go);
+        }
+
+
+    }
+
+    function right(x, y) {
+        var go = myGrid[x][y];
+        go = myGrid[x + 1][y];
+        if (!go.visited) {
+            go.visited = true;
+            back.push(go);
+        } else if (go.visited) {
+            while (!visited) {
+                if (!go.visited) {
+                    left(go.x, go.y);
+                } else if (!go.visited) {
+                    down(go.x, go.y);
+                } else if (!go.visited) {
+                    up(go.x, go.y);
+                }
+            }
+        }
+    }
+
+    function up(x, y) {
+        var go = myGrid[x][y];
+        go = myGrid[x][y - 1];
+        if (!go.visited) {
+            go.visited = true;
+            back.push(go);
+        } else if (go.visited) {
+            while (!visited) {
+                if (!go.visited) {
+                    right(go.x, go.y);
+                } else if (!go.visited) {
+                    down(go.x, go.y);
+                } else if (!go.visited) {
+                    left(go.x, go.y);
+                }
+            }
+        }
+    }
+
+    function down(x, y) {
+        var go = myGrid[x][y];
+        go = myGrid[x][y + 1];
+        if (!go.visited) {
+            go.visited = true;
+            back.push(go);
+        } else if (go.visited) {
+            while (!visited) {
+                if (!go.visited) {
+                    right(go.x, go.y);
+                } else if (!go.visited) {
+                    left(go.x, go.y);
+                } else if (!go.visited) {
+                    up(go.x, go.y);
+                }
+            }
+        }
+
+    }
+};
+
 // function work(){
 //  make me a maze, a sandwitch, and do my laundry
 // } alert("something cool");
