@@ -1,5 +1,11 @@
 window.onload = function () {
 
+    var theCanvas=document.getElementById("myCanvas");
+    var theContext=theCanvas.getContext("2d");
+    
+    var c=document.getElementById("myCanvas");
+    var ctx=c.getContext("2d");
+    
     const SIZE = 6;
     const CELL_SIZE = 69;
 
@@ -37,13 +43,10 @@ window.onload = function () {
     // }
 
 
-
-
-
     function explore(x, y, myGrid) {
         var go = myGrid[x][y];
-        var cell = myGrid[x][y];
-        cell.visited = true;
+        // var cell = myGrid[x][y];
+        // cell.visited = true;
         // If I can go left
         // go = left
         // If !left.visisted
@@ -183,17 +186,7 @@ window.onload = function () {
         if (!go.visited) {
             go.visited = true;
             back.push(go);
-        } else if (go.visited) {
-            while (!visited) {
-                if (!go.visited) {
-                    left(go.x, go.y);
-                } else if (!go.visited) {
-                    down(go.x, go.y);
-                } else if (!go.visited) {
-                    up(go.x, go.y);
-                }
-            }
-        }
+        } 
     }
 
     function up(x, y) {
@@ -202,17 +195,7 @@ window.onload = function () {
         if (!go.visited) {
             go.visited = true;
             back.push(go);
-        } else if (go.visited) {
-            while (!visited) {
-                if (!go.visited) {
-                    right(go.x, go.y);
-                } else if (!go.visited) {
-                    down(go.x, go.y);
-                } else if (!go.visited) {
-                    left(go.x, go.y);
-                }
-            }
-        }
+        } 
     }
 
     function down(x, y) {
@@ -221,18 +204,7 @@ window.onload = function () {
         if (!go.visited) {
             go.visited = true;
             back.push(go);
-        } else if (go.visited) {
-            while (!visited) {
-                if (!go.visited) {
-                    right(go.x, go.y);
-                } else if (!go.visited) {
-                    left(go.x, go.y);
-                } else if (!go.visited) {
-                    up(go.x, go.y);
-                }
-            }
         }
-
     }
 };
 
