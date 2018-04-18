@@ -3,8 +3,6 @@ window.onload = function () {
     const SIZE = 3;
     const CELL_SIZE = 69;
 
-//canvas size = cell-size*size
-
     var myGrid = [];
 
     function Cell(x, y) {
@@ -19,17 +17,13 @@ window.onload = function () {
         this.neighborsX = [x - 1, x, x + 1, x];
         this.neighborsY = [y, y + 1, y, y - 1];
 
-        this.startDistance;
-
         this.left;
         this.right;
         this.up;
         this.down;
+
+        this.startDistance;
     }
-<<<<<<< HEAD
-    //var visited = false;
-=======
->>>>>>> 9cc1d854c79b11adac090768ac776c6c439e977d
     redrawGrid();
 
     console.log(myGrid);
@@ -41,6 +35,7 @@ window.onload = function () {
     function Start() {
         this.x = getRandomInt(SIZE);
         this.y = getRandomInt(SIZE);
+        this.color = "green";
     }
 
     var start = new Start();
@@ -48,62 +43,6 @@ window.onload = function () {
     console.log(start.x, start.y);
 
     var back = [];
-<<<<<<< HEAD
-
-    explore(start.x, start.y, myGrid);
-
-    function explore(x, y, myGrid) {
-        var go = myGrid[start.x][start.y];
-        var directions = [0, 1, 2, 3];
-        // var cell = myGrid[x][y];
-        // cell.visited = true;
-
-        // If I can go left
-        // go = left
-        // If !left.visisted
-        // explore(left.x,left.y, myGrid)
-        // If can go right
-        // fi can go up
-        // if can go down
-        for (var i = 0; i < directions.length; i++) {
-            //var direction = Math.floor(Math.random() * 4);
-          //  console.log(directions);
-            //  console.log(myGrid[x][y]);
-           // console.log(go);
-            if (directions[i] == 0 && x - 1 >= 0) {
-                var go = myGrid[start.x][start.y];
-                 go = myGrid[x - 1][y];
-                left(go.x, go.y);
-                console.log(go);
-                back.push(go);
-                explore(go.x, go.y, myGrid);
-            }  if (directions[i] == 1 && x + 1 < SIZE) {
-                var go = myGrid[start.x][start.y];
-                 go = myGrid[x + 1][y];
-                right(go.x, go.y);
-                console.log(go);
-                back.push(go);
-                explore(go.x, go.y, myGrid);
-            }  if (directions[i] == 2 && y + 1 < SIZE) {
-                var go = myGrid[start.x][start.y];
-                 go = myGrid[x][y + 1];
-                down(go.x, go.y);
-                console.log(go);
-                back.push(go);
-                explore(go.x, go.y, myGrid);
-            }  if (directions[i] == 3 && y - 1 >= 0) {
-                var go = myGrid[start.x][start.y];
-                 go = myGrid[x][y - 1];
-                up(go.x, go.y);
-                console.log(go);
-                back.push(go);
-                explore(go.x, go.y, myGrid);
-            }
-            // else {
-            //     back.pop();
-            //     explore(go.x, go.y, myGrid);
-            // }
-=======
     explore(start.x, start.y, myGrid);
 
 
@@ -137,13 +76,12 @@ window.onload = function () {
                 explore(go.x, go.y, myGrid);
             }
         }
-        if (y - 1 >= 0) { 
+        if (y - 1 >= 0) {
             go = myGrid[x][y - 1];
             if (!go.visited) {
                 back.push(go);
                 explore(go.x, go.y, myGrid);
             }
->>>>>>> 9cc1d854c79b11adac090768ac776c6c439e977d
         }
     }
 
@@ -160,45 +98,7 @@ window.onload = function () {
         }
     }
 
-<<<<<<< HEAD
-    function left(x, y) {
-        //var go = myGrid[x][y];
-        var go = myGrid[x - 1][y];
-        // if (!go.visited) {
-        go.visited = true;
-        back.push(go);
-        // }
-    }
-
-    function right(x, y) {
-        // var go = myGrid[x][y];
-        var go = myGrid[x + 1][y];
-        // if (!go.visited) {
-        go.visited = true;
-        back.push(go);
-    }
-
-    function up(x, y) {
-        //var go = myGrid[x][y];
-        var go = myGrid[x][y - 1];
-        // if (!go.visited) {
-        go.visited = true;
-        back.push(go);
-    }
-
-    function down(x, y) {
-        // var go = myGrid[x][y];
-        var go = myGrid[x][y + 1];
-        // if (!go.visited) {
-        go.visited = true;
-        back.push(go);
-=======
-    function work(){
-     var commands = "make me a maze, a sandwich, and do my laundry";
->>>>>>> 9cc1d854c79b11adac090768ac776c6c439e977d
-    }
-
-<<<<<<< HEAD
-}
-=======
->>>>>>> 9cc1d854c79b11adac090768ac776c6c439e977d
+};
+        function work() {
+            var commands = "make me a maze, a sandwich, and do my laundry";
+        }
