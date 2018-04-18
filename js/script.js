@@ -8,7 +8,11 @@ window.onload = function () {
     var myGrid = [];
 
     function Cell(x, y) {
-        this.walls = ['l', 'r', 'u', 'd'];
+        // this.walls = ['l', 'r', 'u', 'd'];
+        this.leftWall = true;
+        this.rightWall = true;
+        this.topWall = true;
+        this.bottomWall = true;
         this.x = x;
         this.y = y;
         this.visited = false;
@@ -22,7 +26,10 @@ window.onload = function () {
         this.up;
         this.down;
     }
+<<<<<<< HEAD
     //var visited = false;
+=======
+>>>>>>> 9cc1d854c79b11adac090768ac776c6c439e977d
     redrawGrid();
 
     console.log(myGrid);
@@ -41,6 +48,7 @@ window.onload = function () {
     console.log(start.x, start.y);
 
     var back = [];
+<<<<<<< HEAD
 
     explore(start.x, start.y, myGrid);
 
@@ -95,19 +103,52 @@ window.onload = function () {
             //     back.pop();
             //     explore(go.x, go.y, myGrid);
             // }
+=======
+    explore(start.x, start.y, myGrid);
+
+
+    function explore(x, y, myGrid) {
+        var go;
+        var currentCell = myGrid[x][y];
+        currentCell.visited = true;
+
+        console.log(myGrid);
+
+        if (x - 1 >= 0) {
+
+            go = myGrid[x - 1][y];
+            if (!go.visited) {
+                back.push(go);
+                explore(go.x, go.y, myGrid);
+            }
+
+        }
+        if (x + 1 < SIZE) {
+            go = myGrid[x + 1][y];
+            if (!go.visited) {
+                back.push(go);
+                explore(go.x, go.y, myGrid);
+            }
+        }
+        if (y + 1 < SIZE) {
+            go = myGrid[x][y + 1];
+            if (!go.visited) {
+                back.push(go);
+                explore(go.x, go.y, myGrid);
+            }
+        }
+        if (y - 1 >= 0) { 
+            go = myGrid[x][y - 1];
+            if (!go.visited) {
+                back.push(go);
+                explore(go.x, go.y, myGrid);
+            }
+>>>>>>> 9cc1d854c79b11adac090768ac776c6c439e977d
         }
     }
 
     console.log(back);
-    // if (!visited) {
-    //     explore(go.x, go.y, myGrid);
-    // }
-    // console.log(go);
-    // if (visited == true) {
-    //     explore(go.x, go.y, myGrid);
-    // }
 
-    //((Math.floor(Math.random((SIZE - 1) / 2))) * 2) + 1;
     function redrawGrid() {
         for (var x = 0; x < SIZE; x++) {
             myGrid[x] = [];
@@ -119,6 +160,7 @@ window.onload = function () {
         }
     }
 
+<<<<<<< HEAD
     function left(x, y) {
         //var go = myGrid[x][y];
         var go = myGrid[x - 1][y];
@@ -150,6 +192,13 @@ window.onload = function () {
         // if (!go.visited) {
         go.visited = true;
         back.push(go);
+=======
+    function work(){
+     var commands = "make me a maze, a sandwich, and do my laundry";
+>>>>>>> 9cc1d854c79b11adac090768ac776c6c439e977d
     }
 
+<<<<<<< HEAD
 }
+=======
+>>>>>>> 9cc1d854c79b11adac090768ac776c6c439e977d
