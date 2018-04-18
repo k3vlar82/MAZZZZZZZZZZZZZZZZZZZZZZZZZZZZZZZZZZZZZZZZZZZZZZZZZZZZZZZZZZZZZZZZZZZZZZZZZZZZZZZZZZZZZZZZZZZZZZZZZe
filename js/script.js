@@ -1,11 +1,14 @@
 window.onload = function () {
 
+<<<<<<< HEAD
     // var theCanvas=document.getElementById("myCanvas");
     // var theContext=theCanvas.getContext("2d");
 
     // var c=document.getElementById("myCanvas");
     // var ctx=c.getContext("2d");
 
+=======
+>>>>>>> ff608482955843b9c0dade1dcbcd5fcc645da7a5
     const SIZE = 6;
     const CELL_SIZE = 69;
 
@@ -57,10 +60,72 @@ window.onload = function () {
         // If can go right
         // fi can go up
         // if can go down
+<<<<<<< HEAD
        for(var i = 0; i<directions.length; i++) {
             //var direction = Math.floor(Math.random() * 4);
             console.log(directions);
             //  console.log(myGrid[x][y]);
+=======
+
+        var direction = Math.floor(Math.random() * 4);
+        console.log(direction);
+        //  console.log(myGrid[x][y]);
+        console.log(go);
+        var count = 0
+        if (direction == 0 && x - 1 >= 0) {
+            left(go.x, go.y);
+            while (!visited) {
+                count++;
+                console.log(count);
+                if(count < 100){
+                    break;
+                }
+                if (!go.visited) {
+                    right(go.x, go.y);
+                } else if (!go.visited) {
+                    down(go.x, go.y);
+                } else if (!go.visited) {
+                    up(go.x, go.y);
+                } else {
+                    back.pop();
+                }
+            }
+            back.push(go);
+            explore(go.x, go.y, myGrid);
+        } else if (direction == 1 && x + 1 < SIZE) {
+            console.log(go);
+            right(go.x, go.y);
+            while (!visited) {
+                if (!go.visited) {
+                    right(go.x, go.y);
+                } else if (!go.visited) {
+                    down(go.x, go.y);
+                } else if (!go.visited) {
+                    up(go.x, go.y);
+                } else {
+                    back.pop();
+                }
+            }
+            back.push(go);
+            explore(go.x, go.y, myGrid);
+        } else if (direction == 2 && y + 1 < SIZE) {
+            console.log(go);
+            down(go.x, go.y);
+            while (!visited) {
+                if (!go.visited) {
+                    right(go.x, go.y);
+                } else if (!go.visited) {
+                    down(go.x, go.y);
+                } else if (!go.visited) {
+                    up(go.x, go.y);
+                } else {
+                    back.pop();
+                }
+            }
+            back.push(go);
+            explore(go.x, go.y, myGrid);
+        } else if (direction == 3 && y - 1 >= 0) { // y is 0 - goes to this, pops last cell, goes back to this
+>>>>>>> ff608482955843b9c0dade1dcbcd5fcc645da7a5
             console.log(go);
             if (directions[i] == 0 && x - 1 >= 0) {
                 var go = myGrid[x-1][y];
@@ -157,25 +222,7 @@ window.onload = function () {
 
             }
         }
-        // var gridDiv = document.getElementById("grid");
-        // for (var y = 0; y < SIZE; y++) {
-        //     var newRow = document.createElement("div");
-
-        //     for (var x = 0; x < SIZE; x++) {
-        //         var newCell = document.createElement("div");
-
-        //         newCell.style.height = CELL_SIZE + "px";
-        //         newCell.style.width = CELL_SIZE + "px";
-        //         newCell.style.backgroundColor = "#abcdef";
-        //         newCell.style.color = "#123456";
-        //         newCell.style.display = "inline-block";
-        //         newCell.style.border = "solid .5px black";
-        //         newCell.style.textAlign = "center";
-        //         newCell.textContent = y + "," + x;
-        //         newRow.appendChild(newCell);
-        //     }
-        //     gridDiv.appendChild(newRow);
-        // }
+     
     }
 
     function left(x, y) {
