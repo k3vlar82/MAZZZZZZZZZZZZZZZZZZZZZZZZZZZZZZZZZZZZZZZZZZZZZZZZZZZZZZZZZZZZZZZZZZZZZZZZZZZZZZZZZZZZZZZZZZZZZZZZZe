@@ -49,6 +49,8 @@ window.onload = function () {
 
             go = myGrid[x - 1][y];
             if (!go.visited) {
+                currentCell.leftWall = false;
+                go.rightWall = false;
                 back.push(go);
                 explore(go.x, go.y, myGrid);
             }
@@ -57,6 +59,8 @@ window.onload = function () {
         if (x + 1 < SIZE) {
             go = myGrid[x + 1][y];
             if (!go.visited) {
+                currentCell.rightWall = false;
+                go.leftWall = false;
                 back.push(go);
                 explore(go.x, go.y, myGrid);
             }
@@ -64,6 +68,8 @@ window.onload = function () {
         if (y + 1 < SIZE) {
             go = myGrid[x][y + 1];
             if (!go.visited) {
+                currentCell.bottomWall = false;
+                go.topWall = false;
                 back.push(go);
                 explore(go.x, go.y, myGrid);
             }
@@ -71,6 +77,8 @@ window.onload = function () {
         if (y - 1 >= 0) { 
             go = myGrid[x][y - 1];
             if (!go.visited) {
+                currentCell.topWall = false;
+                go.bottomWall = false;
                 back.push(go);
                 explore(go.x, go.y, myGrid);
             }
@@ -113,4 +121,3 @@ window.onload = function () {
      var commands = "make me a maze, a sandwich, and do my laundry";
     }
 };
-
