@@ -1,7 +1,7 @@
 window.onload = function () {
 
-    const SIZE = 3;
-    const CELL_SIZE = 100;
+    const SIZE = 50;
+    const CELL_SIZE = 5;
 
     var myGrid = [];
 
@@ -15,14 +15,6 @@ window.onload = function () {
         ctx.fillStyle = "white";
         ctx.fillRect(3, 3, CELL_SIZE * SIZE, CELL_SIZE * SIZE);
 
-        if (x == start.x && y == start.y) {
-            // ctx.font = "20px cursive";
-            // ctx.fillText("S", start.x, start.y);
-            // ctx.stroke();
-            ctx.fillStyle = "red";
-            ctx.fillRect(start.x * CELL_SIZE, start.y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
-            ctx.stroke();
-        }
         if (myGrid[x][y].leftWall) {
             // ctx.beginPath();
             ctx.moveTo(x * CELL_SIZE, y * CELL_SIZE);
@@ -51,15 +43,22 @@ window.onload = function () {
             ctx.strokeStyle = "black";
             ctx.stroke();
         }
-        if (x == end.x && y == end.y) {
-            // ctx.font = "20px cursive";
-            // ctx.fillText("S", start.x, start.y);
-            // ctx.stroke();
-            ctx.fillStyle = "purple";
-            ctx.fillRect((end.x * CELL_SIZE), (end.y * CELL_SIZE), CELL_SIZE, CELL_SIZE);
-            ctx.stroke();
-        }
+        
     }
+
+    function startEnd(){
+        var canvas = document.getElementById('mazeCanvas');
+        var ctx = canvas.getContext('2d');
+        
+            ctx.fillStyle = "red";
+            ctx.fillRect(start.x * CELL_SIZE, start.y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+            ctx.stroke();
+
+            ctx.fillStyle = "purple";
+            ctx.fillRect(end.x * CELL_SIZE, end.y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+            ctx.stroke();
+    }
+
 
     function Cell(x, y) {
         // this.walls = ['l', 'r', 'u', 'd'];
@@ -91,7 +90,6 @@ window.onload = function () {
     function Start() {
         this.x = getRandomInt(SIZE);
         this.y = getRandomInt(SIZE);
-        this.color = "green";
     }
 
     var start = new Start();
@@ -101,11 +99,17 @@ window.onload = function () {
     function End() {
         this.x = getRandomInt(SIZE);
         this.y = getRandomInt(SIZE);
+        if(this.x == start.x){
+            this.x = getRandomInt(SIZE);
+        }
+        if(this.y == start.y){
+            this.y = getRandomInt(SIZE);
+        }
     }
 
     var end = new End();
-    draww(end.x, end.y);
-    console.log(end);
+    // draww(end.x, end.y);
+    // console.log(end);
 
 
     var back = [];
@@ -130,7 +134,7 @@ window.onload = function () {
                 back.push(go);
                 explore(go.x, go.y, myGrid);
             }
-            draww(go.x, go.y);
+            // draww(go.x, go.y);
 
         }
         if (x + 1 < SIZE) {
@@ -141,7 +145,7 @@ window.onload = function () {
                 back.push(go);
                 explore(go.x, go.y, myGrid);
             }
-            draww(go.x, go.y);
+            // draww(go.x, go.y);
         }
         if (y + 1 < SIZE) {
             go = myGrid[x][y + 1];
@@ -151,7 +155,7 @@ window.onload = function () {
                 back.push(go);
                 explore(go.x, go.y, myGrid);
             }
-            draww(go.x, go.y);
+            // draww(go.x, go.y);
         }
         if (y - 1 >= 0) {
             go = myGrid[x][y - 1];
@@ -161,8 +165,9 @@ window.onload = function () {
                 back.push(go);
                 explore(go.x, go.y, myGrid);
             }
-            draww(go.x, go.y);
+            // draww(go.x, go.y);
         }
+        // draww(go.x, go.y);
     }
 
     console.log(back);
@@ -178,14 +183,21 @@ window.onload = function () {
         }
     }
 
-<<<<<<< HEAD
-};
-        function work() {
-            var commands = "make me a maze, a sandwich, and do my laundry";
+    function drawMaze(Grid) {
+        var maze = Grid;
+        for (var x = 0; x < SIZE; x++) {
+            console.log(maze);
+            for (var y = 0; y < SIZE; y++) {
+                draww(x, y);
+            }
         }
-=======
-    function work() {
-        var commands = "make me a maze, a sandwich, and do my laundry";
     }
+    drawMaze(myGrid);
+    startEnd();
+
+    function Work() {
+        this.commands = "make me a maze, a sandwich, and do my laundry";
+    }
+    var work = new Work();
+    console.log(work.commands);
 };
->>>>>>> ecc40ccc15acdd1e12f1dae97124899f4cd16b21
