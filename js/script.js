@@ -93,16 +93,16 @@ window.onload = function () {
         this.y = getRandomInt(SIZE);
         this.color = "green";
     }
-    
+
     var start = new Start();
-    
+
     console.log(start.x, start.y);
-    
+
     function End() {
         this.x = getRandomInt(SIZE);
         this.y = getRandomInt(SIZE);
     }
-    
+
     var end = new End();
     draww(end.x, end.y);
     console.log(end);
