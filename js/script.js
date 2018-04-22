@@ -1,6 +1,6 @@
 window.onload = function () {
 
-    const SIZE = 7;
+    const SIZE = 10;
     const CELL_SIZE = 50;
 
     var myGrid = [];
@@ -34,7 +34,7 @@ window.onload = function () {
         if (myGrid[x][y].bottomWall) {
             ctx.moveTo(x * CELL_SIZE, (y + 1) * CELL_SIZE);
             ctx.lineTo((x + 1) * CELL_SIZE, (y + 1) * CELL_SIZE);
-            ctx.strokeStyle = "black";
+            ctx.strokeStyle = "blue";
             ctx.stroke();
         }
 
@@ -178,9 +178,42 @@ window.onload = function () {
             }
         }
     }
+
+    function moveLeft() {
+        var box = start.getElementById('grid');
+        box.style.left = parseInt(box.style.left) - CELL_SIZE + "px";
+    }
+    function moveRight() {
+        var box = start.getElementById('grid');
+        box.style.left = parseInt(box.style.left) + CELL_SIZE + "px";
+    }
+    function moveUp() {
+        var box = start.getElementById('grid');
+        box.style.up = parseInt(box.style.up) - CELL_SIZE + "px";
+    }
+    function moveDown() {
+        var box = start.getElementById('grid');
+        box.style.up = parseInt(box.style.up) + CELL_SIZE + "px";
+    }
+
+    
+    function moving() {
+        window.addEventListener('onkeydown', move);
+    }
+    function move(event) {
+        if (onkeydown == 37) {
+            moveLeft();
+        } else if (onkeydown == 38) {
+            moveUp();
+        } else if (onkeydown == 39) {
+            moveRight();
+        } else if (onkeydown == 40) {
+            moveDown();
+        }
+    }
+
     drawMaze(myGrid);
     startEnd();
-
     function Work() {
         this.commands = "Make me a maze, a sandwich, and do my laundry";
     }
