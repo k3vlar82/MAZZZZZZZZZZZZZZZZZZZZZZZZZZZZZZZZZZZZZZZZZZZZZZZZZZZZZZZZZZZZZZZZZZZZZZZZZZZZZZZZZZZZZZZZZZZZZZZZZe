@@ -1,9 +1,27 @@
+const SIZE = 10;
+const CELL_SIZE = 50;
+
+var myGrid = [];
 window.onload = function () {
 
-    const SIZE = 10;
-    const CELL_SIZE = 50;
+    function Cell(x, y) {
+        this.leftWall = true;
+        this.rightWall = true;
+        this.topWall = true;
+        this.bottomWall = true;
+        this.x = x;
+        this.y = y;
+        this.visited = false;
+        this.neighborsX = [x - 1, x, x + 1, x];
+        this.neighborsY = [y, y + 1, y, y - 1];
 
-    var myGrid = [];
+        this.left;
+        this.right;
+        this.up;
+        this.down;
+
+        this.startDistance;
+    }
 
     function draww(x, y) {
         var canvas = document.getElementById('mazeCanvas');
@@ -53,25 +71,6 @@ window.onload = function () {
         ctx.stroke();
     }
 
-
-    function Cell(x, y) {
-        this.leftWall = true;
-        this.rightWall = true;
-        this.topWall = true;
-        this.bottomWall = true;
-        this.x = x;
-        this.y = y;
-        this.visited = false;
-        this.neighborsX = [x - 1, x, x + 1, x];
-        this.neighborsY = [y, y + 1, y, y - 1];
-
-        this.left;
-        this.right;
-        this.up;
-        this.down;
-
-        this.startDistance;
-    }
     redrawGrid();
 
     console.log(myGrid);
@@ -106,57 +105,7 @@ window.onload = function () {
     explore(start.x, start.y, myGrid);
     draww(start.x, start.y);
 
-    function explore(x, y, myGrid) {
-        var go;
-        var currentCell = myGrid[x][y];
-        currentCell.visited = true;
-
-        // var direction;
-        // function rand() {
-        //     var dir = [0, 1, 2, 3];
-        //     dir.
-        //     for (var d = 0; d < dir; d++) {
-        //         [d] = direction;
-        //     }
-        // }
-        // direction = rand();
-        // console.log(direction);
-        if (x - 1 >= 0) {
-            go = myGrid[x - 1][y];
-            if (!go.visited) {
-                back.push(go);
-                currentCell.leftWall = false;
-                go.rightWall = false;
-                explore(go.x, go.y, myGrid);
-            }
-        } if (y + 1 < SIZE) {
-            go = myGrid[x][y + 1];
-            if (!go.visited) {
-                back.push(go);
-                currentCell.bottomWall = false;
-                go.topWall = false;
-                explore(go.x, go.y, myGrid);
-            }
-        } if (y - 1 >= 0) {
-            go = myGrid[x][y - 1];
-            if (!go.visited) {
-                back.push(go);
-                currentCell.topWall = false;
-                go.bottomWall = false;
-                explore(go.x, go.y, myGrid);
-            }
-        }
-        if (x + 1 < SIZE) {
-            go = myGrid[x + 1][y];
-            if (!go.visited) {
-                back.push(go);
-                currentCell.rightWall = false;
-                go.leftWall = false;
-                explore(go.x, go.y, myGrid);
-            }
-        }
-    }
-    console.log(back);
+//    console.log(back);
 
     function redrawGrid() {
         for (var x = 0; x < SIZE; x++) {
@@ -179,6 +128,7 @@ window.onload = function () {
         }
     }
 
+
     function moveLeft() {
         var box = start.getElementById('grid');
         box.style.left = parseInt(box.style.left) - CELL_SIZE + "px";
@@ -196,21 +146,6 @@ window.onload = function () {
         box.style.up = parseInt(box.style.up) + CELL_SIZE + "px";
     }
 
-    
-    function moving() {
-        window.addEventListener('onkeydown', move);
-    }
-    function move(event) {
-        if (onkeydown == 37) {
-            moveLeft();
-        } else if (onkeydown == 38) {
-            moveUp();
-        } else if (onkeydown == 39) {
-            moveRight();
-        } else if (onkeydown == 40) {
-            moveDown();
-        }
-    }
 
     drawMaze(myGrid);
     startEnd();
@@ -220,4 +155,29 @@ window.onload = function () {
     var work = new Work();
     console.log(work.commands);
 
+}
+
+function solve(Grid) {
+    for (var x = 0; x < SIZE; x++) {
+        for (var y = 0; y < SIZE; y++) {
+            if (this.go.visited[x][y] == true) {
+                this.go.fillStyle == 'pink';
+                this.go.fillRect(x * CELL_SIZE, y * CELL_SIZE, 10, 10)
+            }
+        }
+    }
+}
+function moving() {
+    window.addEventListener('onkeydown', move);
+}
+function move(event) {
+    if (onkeydown == 37) {
+        moveLeft();
+    } else if (onkeydown == 38) {
+        moveUp();
+    } else if (onkeydown == 39) {
+        moveRight();
+    } else if (onkeydown == 40) {
+        moveDown();
+    }
 }
