@@ -1,7 +1,7 @@
 window.onload = function () {
 
-    const SIZE = 79;
-    const CELL_SIZE = 5;
+    const SIZE = 7;
+    const CELL_SIZE = 50;
 
     var myGrid = [];
 
@@ -11,7 +11,7 @@ window.onload = function () {
         this.maze = myGrid;
 
         ctx.fillStyle = "white";
-        ctx.fillRect(0, 0, CELL_SIZE * SIZE, CELL_SIZE * SIZE);
+        ctx.fillRect(3, 3, CELL_SIZE * SIZE, CELL_SIZE * SIZE);
 
         if (myGrid[x][y].leftWall) {
             ctx.moveTo(x * CELL_SIZE, y * CELL_SIZE);
@@ -44,11 +44,11 @@ window.onload = function () {
         var canvas = document.getElementById('mazeCanvas');
         var ctx = canvas.getContext('2d');
 
-        ctx.fillStyle = "blue";
+        ctx.fillStyle = "red";
         ctx.fillRect(start.x * CELL_SIZE, start.y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
         ctx.stroke();
 
-        ctx.fillStyle = "red";
+        ctx.fillStyle = "purple";
         ctx.fillRect(end.x * CELL_SIZE, end.y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
         ctx.stroke();
     }
@@ -64,7 +64,6 @@ window.onload = function () {
         this.visited = false;
         this.neighborsX = [x - 1, x, x + 1, x];
         this.neighborsY = [y, y + 1, y, y - 1];
-        // this.count = 0;
 
         this.left;
         this.right;
@@ -111,8 +110,8 @@ window.onload = function () {
         var go;
         var currentCell = myGrid[x][y];
         currentCell.visited = true;
-        // var count = 0;
-        var direction = getRandomInt(3);
+
+        // var direction;
         // function rand() {
         //     var dir = [0, 1, 2, 3];
         //     dir.
@@ -122,191 +121,40 @@ window.onload = function () {
         // }
         // direction = rand();
         // console.log(direction);
-        if (direction == 0) {
-            if (y + 1 < SIZE) {
-                go = myGrid[x][y + 1];
-                if (!go.visited) {
-                    // count++;
-                    back.push(go);
-                    currentCell.bottomWall = false;
-                    go.topWall = false;
-                    // go.count+=1;
-                }
+        if (x - 1 >= 0) {
+            go = myGrid[x - 1][y];
+            if (!go.visited) {
+                back.push(go);
+                currentCell.leftWall = false;
+                go.rightWall = false;
                 explore(go.x, go.y, myGrid);
             }
-
-            if (x - 1 >= 0) {
-                go = myGrid[x - 1][y];
-                if (!go.visited) {
-                    // count++;
-                    back.push(go);
-                    currentCell.leftWall = false;
-                    go.rightWall = false;
-                    // go.count+=1;
-                    explore(go.x, go.y, myGrid);
-                }
-            }
-            if (x + 1 < SIZE) {
-                go = myGrid[x + 1][y];
-                if (!go.visited) {
-                    // count++;
-                    back.push(go);
-                    currentCell.rightWall = false;
-                    go.leftWall = false;
-                    // go.count+=1;
-                    explore(go.x, go.y, myGrid);
-                }
-            } if (y - 1 >= 0) {
-                go = myGrid[x][y - 1];
-                if (!go.visited) {
-                    back.push(go);
-                    // count++;
-                    currentCell.topWall = false;
-                    go.bottomWall = false;
-                    // go.count+=1;
-                    explore(go.x, go.y, myGrid);
-                }
-            }
-        }
-        if (direction == 1) {
-            if (x - 1 >= 0) {
-                go = myGrid[x - 1][y];
-                if (!go.visited) {
-                    // count++;
-                    back.push(go);
-                    currentCell.leftWall = false;
-                    go.rightWall = false;
-                    // go.count+=1;
-                    explore(go.x, go.y, myGrid);
-                }
-            }
-            if (y + 1 < SIZE) {
-                go = myGrid[x][y + 1];
-                if (!go.visited) {
-                    // count++;
-                    back.push(go);
-                    currentCell.bottomWall = false;
-                    go.topWall = false;
-                    // go.count+=1;
-                }
+        } if (y + 1 < SIZE) {
+            go = myGrid[x][y + 1];
+            if (!go.visited) {
+                back.push(go);
+                currentCell.bottomWall = false;
+                go.topWall = false;
                 explore(go.x, go.y, myGrid);
             }
-            if (x + 1 < SIZE) {
-                go = myGrid[x + 1][y];
-                if (!go.visited) {
-                    // count++;
-                    back.push(go);
-                    currentCell.rightWall = false;
-                    go.leftWall = false;
-                    // go.count+=1;
-                    explore(go.x, go.y, myGrid);
-                }
-            }
-            if (y - 1 >= 0) {
-                go = myGrid[x][y - 1];
-                if (!go.visited) {
-                    back.push(go);
-                    // count++;
-                    currentCell.topWall = false;
-                    go.bottomWall = false;
-                    // go.count+=1;
-                    explore(go.x, go.y, myGrid);
-                }
-            }
-        }
-        if (direction == 2) {
-            if (y - 1 >= 0) {
-                go = myGrid[x][y - 1];
-                if (!go.visited) {
-                    back.push(go);
-                    // count++;
-                    currentCell.topWall = false;
-                    go.bottomWall = false;
-                    // go.count+=1;
-                    explore(go.x, go.y, myGrid);
-                }
-            }
-            if (x - 1 >= 0) {
-                go = myGrid[x - 1][y];
-                if (!go.visited) {
-                    // count++;
-                    back.push(go);
-                    currentCell.leftWall = false;
-                    go.rightWall = false;
-                    // go.count+=1;
-                    explore(go.x, go.y, myGrid);
-                }
-            }
-            if (x + 1 < SIZE) {
-                go = myGrid[x + 1][y];
-                if (!go.visited) {
-                    // count++;
-                    back.push(go);
-                    currentCell.rightWall = false;
-                    go.leftWall = false;
-                    // go.count+=1;
-                    explore(go.x, go.y, myGrid);
-                }
-            }
-            if (y + 1 < SIZE) {
-                go = myGrid[x][y + 1];
-                if (!go.visited) {
-                    // count++;
-                    back.push(go);
-                    currentCell.bottomWall = false;
-                    go.topWall = false;
-                    // go.count+=1;
-                }
+        } if (y - 1 >= 0) {
+            go = myGrid[x][y - 1];
+            if (!go.visited) {
+                back.push(go);
+                currentCell.topWall = false;
+                go.bottomWall = false;
                 explore(go.x, go.y, myGrid);
             }
         }
-        if (direction == 3) {
-            if (y + 1 < SIZE) {
-                go = myGrid[x][y + 1];
-                if (!go.visited) {
-                    // count++;
-                    back.push(go);
-                    currentCell.bottomWall = false;
-                    go.topWall = false;
-                    // go.count+=1;
-                }
+        if (x + 1 < SIZE) {
+            go = myGrid[x + 1][y];
+            if (!go.visited) {
+                back.push(go);
+                currentCell.rightWall = false;
+                go.leftWall = false;
                 explore(go.x, go.y, myGrid);
             }
-
-            if (x - 1 >= 0) {
-                go = myGrid[x - 1][y];
-                if (!go.visited) {
-                    // count++;
-                    back.push(go);
-                    currentCell.leftWall = false;
-                    go.rightWall = false;
-                    // go.count+=1;
-                    explore(go.x, go.y, myGrid);
-                }
-            }
-            if (x + 1 < SIZE) {
-                go = myGrid[x + 1][y];
-                if (!go.visited) {
-                    // count++;
-                    back.push(go);
-                    currentCell.rightWall = false;
-                    go.leftWall = false;
-                    // go.count+=1;
-                    explore(go.x, go.y, myGrid);
-                }
-            } if (y - 1 >= 0) {
-                go = myGrid[x][y - 1];
-                if (!go.visited) {
-                    back.push(go);
-                    // count++;
-                    currentCell.topWall = false;
-                    go.bottomWall = false;
-                    // go.count+=1;
-                    explore(go.x, go.y, myGrid);
-                }
-            }
         }
-        // console.log(count);
     }
     console.log(back);
 
