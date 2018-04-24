@@ -1,3 +1,4 @@
+const SIZE = 10;
 window.onload = function () {
 
     const SIZE = 10;
@@ -73,6 +74,18 @@ window.onload = function () {
 
         this.startDistance;
     }
+
+    function Player(x, y) {
+        this.player.x = x;
+        this.player.y = y;
+
+        this.left;
+        this.right;
+        this.up;
+        this.down;
+        this.fillStyle = '#7fff00';
+    }
+
     redrawGrid();
 
     console.log(myGrid);
@@ -356,9 +369,9 @@ window.onload = function () {
         //box.style.up = parseInt(box.style.up) + CELL_SIZE + "px";
         start.y = start.y + 1;
         startEnd();
-    
+
     }
-   
+
 }
 
 drawMaze(myGrid);
@@ -403,4 +416,12 @@ function moving() {
             moveDown();
         }
     }
+    if (player.x == end.x && player.y == end.y) {
+        somethingCool();
+    }
+}
+
+function somethingCool() {
+    //seizure.bot
+    alert(reeeeeeeeeeeeeeee);
 }
