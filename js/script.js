@@ -1,7 +1,7 @@
 window.onload = function () {
 
-    const SIZE = 3;
-    const CELL_SIZE = 100;
+    const SIZE = 10;
+    const CELL_SIZE = 30;
 
     var myGrid = [];
 
@@ -65,7 +65,7 @@ window.onload = function () {
         this.neighborsX = [x - 1, x, x + 1, x];
         this.neighborsY = [y, y + 1, y, y - 1];
         // this.count = 0;
-
+        //this.distance
         this.left;
         this.right;
         this.up;
@@ -333,4 +333,74 @@ window.onload = function () {
     var work = new Work();
     console.log(work.commands);
 
+    function moveLeft() {
+        //  var box = start.getElementById('grid');
+        //box.style.left = parseInt(box.style.left) - CELL_SIZE + "px";
+        start.x = start.x - 1;
+        startEnd();
+    }
+    function moveRight() {
+        // var box = start.getElementById('grid');
+        //  b//ox.style.left = parseInt(box.style.left) + CELL_SIZE + "px";
+        start.x = start.x + 1;
+        startEnd();
+    }
+    function moveUp() {
+        // var box = start.getElementById('grid');
+        //  box.style.up = parseInt(box.style.up) - CELL_SIZE + "px";
+        start.y = start.y - 1;
+        startEnd();
+    }
+    function moveDown() {
+        // var box = start.getElementById('grid');
+        //box.style.up = parseInt(box.style.up) + CELL_SIZE + "px";
+        start.y = start.y + 1;
+        startEnd();
+    
+    }
+   
+}
+
+drawMaze(myGrid);
+startEnd();
+
+function Work() {
+    this.commands = "Make me a maze, a sandwich, and do my laundry";
+}
+
+var work = new Work();
+console.log(work.commands);
+
+function solve(Grid) {
+    for (var x = 0; x < SIZE; x++) {
+        for (var y = 0; y < SIZE; y++) {
+            if (this.go.visited[x][y] == true) {
+                this.go.fillStyle == 'pink';
+                this.go.fillRect(x * CELL_SIZE, y * CELL_SIZE, 10, 10)
+            }
+        }
+    }
+    if (Cell.x == this.end.x && Cell.y == this.end.y) {
+        while (currentCell.parent) {
+            back.push(currentCell);
+            currentCell = currentCell.parent;
+        }
+    }
+    for (var i in this.solve) {
+        this.context.fillRect(this.solve[i].x * CELL_SIZE, this.solve[i].y * CELL_SIZE, 10, 10);
+    }
+}
+function moving() {
+    window.addEventListener('onkeydown', move());
+    function move(event) {
+        if (onkeydown == 37) {
+            moveLeft();
+        } else if (onkeydown == 38) {
+            moveUp();
+        } else if (onkeydown == 39) {
+            moveRight();
+        } else if (onkeydown == 40) {
+            moveDown();
+        }
+    }
 }
