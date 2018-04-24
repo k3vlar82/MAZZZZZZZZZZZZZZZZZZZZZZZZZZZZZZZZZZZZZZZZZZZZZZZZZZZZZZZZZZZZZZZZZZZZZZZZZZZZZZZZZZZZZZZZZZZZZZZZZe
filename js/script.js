@@ -1,7 +1,7 @@
 window.onload = function () {
 
-    const SIZE = 75;
-    const CELL_SIZE = 10;
+    const SIZE = 3;
+    const CELL_SIZE = 100;
 
     var myGrid = [];
 
@@ -99,6 +99,9 @@ window.onload = function () {
         if (this.y == start.y) {
             this.y = getRandomInt(SIZE);
         }
+        //counting distance (didn't work)
+        // this.x = back[(SIZE*SIZE)-1].x;
+        // this.y = back[(SIZE*SIZE)-1].y;
     }
 
     var end = new End();
@@ -113,15 +116,6 @@ window.onload = function () {
         currentCell.visited = true;
         // var count = 0;
         var direction = getRandomInt(3);
-        // function rand() {
-        //     var dir = [0, 1, 2, 3];
-        //     dir.
-        //     for (var d = 0; d < dir; d++) {
-        //         [d] = direction;
-        //     }
-        // }
-        // direction = rand();
-        // console.log(direction);
         if (direction == 0) {
             if (y + 1 < SIZE) {
                 go = myGrid[x][y + 1];
