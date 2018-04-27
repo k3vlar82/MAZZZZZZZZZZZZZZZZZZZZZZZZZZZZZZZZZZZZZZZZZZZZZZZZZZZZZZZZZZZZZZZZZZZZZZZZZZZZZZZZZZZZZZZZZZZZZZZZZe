@@ -1,3 +1,4 @@
+var time = 0;
 const SIZE = 10;
 const CELL_SIZE = 30;
 var ctx;
@@ -60,7 +61,7 @@ function drawPlayer() {
     var canvas = document.getElementById('mazeCanvas');
     var ctx = canvas.getContext('2d');
 
-    ctx.fillStyle = ctx.fillStyle = "rgba(225, 105, 180, 0.5)";
+    ctx.fillStyle = "rgba(225, 105, 180, 0.5)";
     ctx.fillRect(start.x * CELL_SIZE, start.y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
     ctx.stroke();
 
@@ -417,6 +418,7 @@ function solve(Grid) {
 function moving() {
     player.x = Cell.x;
     player.y = Cell.y;
+    var timer = setInterval(setTime, 1000);
     //  console.log("I work!");
     document.onkeydown = move;
     if (player.x == end.x && player.y == end.y) {
@@ -426,20 +428,38 @@ function moving() {
 
 function move(evt) {
     if (evt.keyCode == 37) {
-       // console.log(currentCell.x, currentCell.y);
+        // console.log(currentCell.x, currentCell.y);
         moveLeft();
     } else if (evt.keyCode == 38) {
-       // console.log('up');
+        // console.log('up');
         moveUp();
     } else if (evt.keyCode == 39) {
-       // console.log('right');
+        // console.log('right');
         moveRight();
     } else if (evt.keyCode == 40) {
-      //  console.log('down');
+        //  console.log('down');
         moveDown();
     }
 }
 
 function somethingCool() {
     alert('reeeeeeeeeeeeeeee');
+}
+
+
+function setTime() {
+    var minutes = document.getElementById("minutes");
+    var seconds = document.getElementById("seconds");
+    time++;
+    seconds.textContent = pad(time % 60);
+    minutes.textContent = pad(parseInt(time / 60));
+}
+
+function pad(val) {
+    var valString = val + "";
+    if (valString.length < 2) {
+        return ("0" + valString);
+    } else {
+        return valString;
+    }
 }
